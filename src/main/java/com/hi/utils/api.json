@@ -1,0 +1,558 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "OpenAPI definition",
+    "version": "v0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:28200/api/lowcode",
+      "description": "Generated server url"
+    }
+  ],
+  "paths": {
+    "/webpage/pageQuery": {
+      "post": {
+        "tags": [
+          "低代码页面接口"
+        ],
+        "summary": "分页查询列表",
+        "operationId": "pageQuery",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/低代码列表页面请求vo【webPageReqVo】"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageResultVoList低代码列表页响应vo【WebpageRespVo】"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/webpage/mergeBranch": {
+      "post": {
+        "tags": [
+          "低代码页面接口"
+        ],
+        "summary": "运维平台合并代码时调用此接口用来合并低代码平台分支",
+        "operationId": "mergeBranch",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/运维平台merge请求vo【MergeBranchReqVo】"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/webpage/getAllSysCodeAndName": {
+      "post": {
+        "tags": [
+          "低代码页面接口"
+        ],
+        "summary": "获取所有系统编号和名称",
+        "operationId": "getAllSysCodeAndName",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResultList系统编号和名称响应vo【SysCodeAndNameRespVo】"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/webpage/edit": {
+      "post": {
+        "tags": [
+          "低代码页面接口"
+        ],
+        "summary": "编辑",
+        "operationId": "edit",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/低代码页面保存入参【WebpageAddReqVo】"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/webpage/add": {
+      "post": {
+        "tags": [
+          "低代码页面接口"
+        ],
+        "summary": "新增",
+        "operationId": "add",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/低代码页面保存入参【WebpageAddReqVo】"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/webpage/detail/{id}": {
+      "get": {
+        "tags": [
+          "低代码页面接口"
+        ],
+        "summary": "详情",
+        "operationId": "detail",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResult低代码详情页响应vo【LowPageDetailRespVo】"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "低代码列表页面请求vo【webPageReqVo】": {
+        "type": "object",
+        "properties": {
+          "pageNo": {
+            "type": "integer",
+            "description": "页号",
+            "format": "int32",
+            "refType": null
+          },
+          "pageSize": {
+            "type": "integer",
+            "description": "页大小",
+            "format": "int32",
+            "refType": null
+          },
+          "pageRange": {
+            "type": "string",
+            "refType": null
+          },
+          "startIndex": {
+            "type": "integer",
+            "format": "int32",
+            "refType": null
+          },
+          "endIndex": {
+            "type": "integer",
+            "format": "int32",
+            "refType": null
+          },
+          "name": {
+            "type": "string",
+            "description": "页面名称",
+            "refType": null
+          },
+          "code": {
+            "type": "string",
+            "description": "页面编号",
+            "refType": null
+          },
+          "sysCode": {
+            "type": "string",
+            "description": "所属系统编码",
+            "refType": null
+          },
+          "state": {
+            "type": "integer",
+            "description": "页面状态：0-未发布，1-已发布，默认0",
+            "format": "int32",
+            "refType": null
+          },
+          "page": {
+            "type": "integer",
+            "format": "int32",
+            "refType": null
+          },
+          "size": {
+            "type": "integer",
+            "format": "int32",
+            "refType": null
+          }
+        }
+      },
+      "PageResultVoList低代码列表页响应vo【WebpageRespVo】": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/低代码列表页响应vo【WebpageRespVo】"
+            }
+          },
+          "total": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "success": {
+            "type": "boolean"
+          }
+        }
+      },
+      "低代码列表页响应vo【WebpageRespVo】": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "主键",
+            "format": "int64",
+            "refType": null
+          },
+          "name": {
+            "type": "string",
+            "description": "页面名称",
+            "refType": null
+          },
+          "code": {
+            "type": "string",
+            "description": "页面编号",
+            "refType": null
+          },
+          "sysName": {
+            "type": "string",
+            "description": "所属系统名称",
+            "refType": null
+          },
+          "state": {
+            "type": "integer",
+            "description": "页面状态：0-未发布，1-已发布，默认0",
+            "format": "int32",
+            "refType": null
+          },
+          "branch": {
+            "type": "string",
+            "description": "当前开发分支",
+            "refType": null
+          },
+          "onLineBranch": {
+            "type": "string",
+            "description": "当前在线分支",
+            "refType": null
+          },
+          "publishTime": {
+            "type": "string",
+            "description": "发布时间",
+            "refType": null
+          }
+        }
+      },
+      "运维平台merge请求vo【MergeBranchReqVo】": {
+        "required": [
+          "branch",
+          "projectCode"
+        ],
+        "type": "object",
+        "properties": {
+          "branch": {
+            "type": "string",
+            "description": "分支名称"
+          },
+          "projectCode": {
+            "type": "string",
+            "description": "项目编码"
+          }
+        }
+      },
+      "ApiResult": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "object"
+          },
+          "success": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ApiResultList系统编号和名称响应vo【SysCodeAndNameRespVo】": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/系统编号和名称响应vo【SysCodeAndNameRespVo】"
+            }
+          },
+          "success": {
+            "type": "boolean"
+          }
+        }
+      },
+      "系统编号和名称响应vo【SysCodeAndNameRespVo】": {
+        "type": "object",
+        "properties": {
+          "sysCode": {
+            "type": "string",
+            "description": "所属系统编码"
+          },
+          "sysName": {
+            "type": "string",
+            "description": "所属系统名称"
+          }
+        }
+      },
+      "低代码页面保存入参【WebpageAddReqVo】": {
+        "required": [
+          "aliasName",
+          "branch",
+          "code",
+          "isPublish",
+          "name",
+          "sysCode",
+          "sysName"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "主键",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string",
+            "description": "页面名称"
+          },
+          "aliasName": {
+            "type": "string",
+            "description": "页面别名"
+          },
+          "code": {
+            "type": "string",
+            "description": "页面编号"
+          },
+          "url": {
+            "type": "string",
+            "description": "页面url地址"
+          },
+          "sysCode": {
+            "type": "string",
+            "description": "所属系统编码"
+          },
+          "sysName": {
+            "type": "string",
+            "description": "所属系统名称"
+          },
+          "branch": {
+            "type": "string",
+            "description": "分支"
+          },
+          "formatJson": {
+            "type": "string",
+            "description": "页面格式json"
+          },
+          "isPublish": {
+            "type": "integer",
+            "description": "是否发布标识，0-不发布，1-发布，默认0",
+            "format": "int32"
+          },
+          "newBranch": {
+            "type": "string",
+            "description": "当branch字段值是release分支时，点击保存需要新建分支"
+          },
+          "filePath": {
+            "type": "string",
+            "description": "文件路径"
+          }
+        }
+      },
+      "ApiResult低代码详情页响应vo【LowPageDetailRespVo】": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "$ref": "#/components/schemas/低代码详情页响应vo【LowPageDetailRespVo】"
+          },
+          "success": {
+            "type": "boolean"
+          }
+        }
+      },
+      "低代码详情页响应vo【LowPageDetailRespVo】": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "主键",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string",
+            "description": "页面名称"
+          },
+          "aliasName": {
+            "type": "string",
+            "description": "页面别名"
+          },
+          "code": {
+            "type": "string",
+            "description": "页面编号"
+          },
+          "url": {
+            "type": "string",
+            "description": "页面url地址"
+          },
+          "sysCode": {
+            "type": "string",
+            "description": "所属系统编码"
+          },
+          "sysName": {
+            "type": "string",
+            "description": "所属系统名称"
+          },
+          "state": {
+            "type": "integer",
+            "description": "页面状态：0-未发布，1-已发布，默认0",
+            "format": "int32"
+          },
+          "branch": {
+            "type": "string",
+            "description": "分支"
+          },
+          "formatJson": {
+            "type": "string",
+            "description": "页面格式json"
+          },
+          "createTime": {
+            "type": "string",
+            "description": "创建时间"
+          },
+          "createUser": {
+            "type": "string",
+            "description": "创建人"
+          },
+          "modifyTime": {
+            "type": "string",
+            "description": "修改时间"
+          },
+          "modifyUser": {
+            "type": "string",
+            "description": "修改人"
+          },
+          "publishTime": {
+            "type": "string",
+            "description": "发布时间"
+          },
+          "publishUser": {
+            "type": "string",
+            "description": "发布人"
+          },
+          "isLock": {
+            "type": "integer",
+            "description": "是否锁定：0-否，1-是 默认0",
+            "format": "int32"
+          },
+          "isDel": {
+            "type": "integer",
+            "description": "是否删除标志位，0未删除，1删除，默认0",
+            "format": "int32"
+          }
+        }
+      }
+    }
+  }
+}
